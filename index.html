@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ashley's 21st Birthday</title>
+  <link href="./output.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="page">
+      <div class="background1">
+        <div class="page1">
+          <div class="TopContainer">
+          <a class="uRInvited">You're invited!</a>
+          <h1 class="Officially21">Officially 21</h1>
+        </div>
+        <div class="MiddleContainer">
+          <div class="imageContainer">
+            <img src="images\Head.jpeg" alt="Image for Page 1" /></div>
+          <a class="name">Ashley Chai</a>
+          <a class="desc">Cheers to 21 years! <br>Join me in celebrating this once-in-a-lifetime milestone!</a>
+        </div>
+        <div class="BottomContainer">
+          <p class="details">26/12/2024</p>
+          <p class="details2">Stay at AquaVista Homes</p>
+          <p class="details3">5 Jalan NPT 7/1L<br>
+            Reflexion @ Taman Nusaputra Timur<br>
+            47130 Puchong Selangor</p>
+          <div class="InvitationBorder">
+            <p class="details4">Invitation</p>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page" id="page2">
+      <div class="background2">
+        <div class="textContainer">
+        <h1>Arrive Early, Celebrate Longer</h1>
+        <div class="stickers">🌟🎉✨</div>
+        <p>The party’s start at 7:30pm, and you won’t want to miss a minute of the fun! Be there on time and let’s make
+          my
+          21st unforgettable!</p>
+        <div class="BoxContainer">
+          <div class="page2Content">
+            <div class="countdownContainer">
+              <div class="countdown" id="countdown"></div>
+            </div>
+            <div class="calendar">
+              <img src="images/calendar.png" alt="Calendar Image" />
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="page" id="page3">
+      <div class="background3">
+        <div class="textContainer2">
+          <div class="topContainer">
+          <h1 class="Barbie">Barbie's Night Out</h1>
+          <img src="image2.jpg" alt="Image for Page 4" />
+          <p class="descriptionBarbie">We’re taking over the night in pink!</p>
+          <p class="descriptionBarbie2">Everyone—ladies and gents, join the Barbie vibes by showing up in your favorite shade of pink or a combo of
+            pink and white!</p>
+          </div>
+          <div class="bottomCcontainer">
+            <h1 class="Pool">Ready, Set, Pool!</h1>
+          <img src="image2.jpg" alt="Image for Page 4" />
+          <p class="poolDesc">Our Airbnb has a pool, so feel free to bring sporty clothes for a <br>splash —no need for proper swimwear, but please avoid cotton clothing. </p>
+          <p class="poolDesc2"> If you plan to sleep over, bring along your towels and overnight essentials<br> too—let's make it a splash and a cozy stay!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="page" id="page4">
+      <div class="background4">
+      <div class="textContainer3">
+        <h1>Celebrate with a Gift Exchange! </h1>
+        <img src="image2.jpg" alt="Image for Page 4" />
+        <p>Since it’s the Christmas season, let’s add a little extra cheer with a Christmas Gift Exchange! December
+          wouldn’t be complete without a gift swap, so bring a small gift <a>(minimum RM20) </a>to celebrate the joy of
+          giving and add some sparkle to the night—it’s not just a party; it’s a time for sharing and surprises. </p>
+      </div>
+    </div>
+  </div>
+
+    <div class="page" id="page5">
+      <img src="location.jpg" alt="Location Image" />
+      <p>Location: 123 Event Street</p>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScGFkG9e/viewform?embedded=true" width="100%"
+        height="500">Loading…</iframe>
+    </div>
+  </div>
+
+
+  <script>
+    var countDownDate = new Date("Dec 26, 2024 19:30:00").getTime();
+
+
+    var x = setInterval(function () {
+      var now = new Date().getTime();
+      var distance = countDownDate - now;
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("countdown").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+
+    let currentPage = 0;
+    const pages = document.querySelectorAll('.page');
+    let isScrolling = false;
+
+    function scrollToPage(pageIndex) {
+      if (pageIndex >= 0 && pageIndex < pages.length) {
+        pages[pageIndex].scrollIntoView({ behavior: 'smooth' });
+        currentPage = pageIndex;
+        isScrolling = true;
+        setTimeout(() => isScrolling = false, 800);
+      }
+    }
+
+    window.addEventListener('wheel', (event) => {
+      if (!isScrolling) {
+        if (event.deltaY > 0) {
+          scrollToPage(currentPage + 1);
+        } else {
+          scrollToPage(currentPage - 1);
+        }
+      }
+    });
+
+    window.addEventListener('keydown', (event) => {
+      if (!isScrolling) {
+        if (event.key === 'ArrowDown') {
+          scrollToPage(currentPage + 1);
+        } else if (event.key === 'ArrowUp') {
+          scrollToPage(currentPage - 1);
+        }
+      }
+    });
+
+  </script>
+</body>
+
+</html>
